@@ -10,4 +10,4 @@ COPY . .
 
 EXPOSE 3000
 
-CMD ["node", "taller.js"]   
+CMD ["node", "src/server.js"]   
