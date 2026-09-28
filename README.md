@@ -113,8 +113,11 @@ docker compose down
 ```
 # Preguntas en el desarrollo
 ## ¿Cuál es la diferencia entre el puerto del contenedor y el puerto publicado en el host?
+El puerto del contenedor es donde escucha la aplicación dentro de la red Docker, en este caso `3000`. El puerto publicado enlaza un puerto del host con el contenedor y permite el acceso externo; Nginx publica el puerto `8080`.
 ## ¿Por qué http://api:3000 funciona entre contenedores, mientras que http://localhost:3000 no representa correctamente al contenedor api?
+`api` es el nombre DNS del servicio dentro de la red Docker y apunta al contenedor de la API. `localhost` apunta al mismo contenedor desde el que se realiza la solicitud, en este caso Nginx, no al contenedor `api`.
 ## Explique la diferencia entre `ports` y `expose` en Docker Compose
+`ports` publica y mapea un puerto del contenedor hacia el host, como `8080:8080` en Nginx. `expose` declara un puerto para la comunicación entre servicios de la red Docker, sin publicarlo en el host; la API utiliza `expose` para el puerto `3000`.
 ## Diagnóstico de errores
 ### ¿Qué error obtiene?
 Error 502 Bad Gateway
@@ -128,6 +131,11 @@ Hacer referencia a otros contenedores con sus nombres (en nuestro caso `api`) an
 Con el comando `docker network ls` se listarán todas las redes que tenga en el sistema
 Y con el comando `docker network inspect <red>` se ve el detalle de una red en concreto con su nombre de red, viendo sus contenedores conectados y sus IPs dentro de la red
 # Evidencias
+## Parte 2:
+- Construir la imagen:
+![](img/Parte2-b.jpeg)
+- Correr el contenedor
+![](img/Parte2-a.jpeg)
 ## Parte 8:
 - Comprobar que el puerto 8080 sin añadir un endpoint especial no retorna información
 ![](img/Parte8-a.png)
