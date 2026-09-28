@@ -16,6 +16,12 @@ services:
       - netw
     depends_on:
       - api
+  
+  redis:
+    image: redis:alpine
+    networks:
+      - netw
+      
 networks:
   netw:
     driver: bridge
